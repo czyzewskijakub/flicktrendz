@@ -6,7 +6,7 @@ import LandingTiles from '../components/LandingTiles'
 
 const LandingPage = () => {
   return (
-    <div className="container">
+    <div>
       <Header></Header>
       <LandingTiles></LandingTiles>
     </div>

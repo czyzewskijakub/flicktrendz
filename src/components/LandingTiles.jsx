@@ -15,6 +15,7 @@ const LandingTiles = () => {
         <img src={tile2} alt="tile2 desc" className="tile-img" />
         <img src={tile4} alt="tile4 desc" className="tile-img" />
       </div>
+      <div className='bar'></div>
     </div>
   );
 };
