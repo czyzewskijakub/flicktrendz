@@ -6,7 +6,7 @@
 .tiles-container {
   display: flex;
   justify-content: space-evenly;
-  /* align-items: center; */
+  align-items: center;
 }
 
 .tile-img {
@@ -17,7 +17,7 @@
 }
 
 .tile-img:nth-child(even) {
-  transform: translateY(20px);
+  transform: translateY(40px);
 }
 
 .tile-img:nth-child(odd) {
