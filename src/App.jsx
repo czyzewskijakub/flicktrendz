@@ -1,14 +1,11 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
 import './App.css';
-import Header from './components/Header/Header.jsx'
+import LandingPage from './pages/LandingPage';
 
 const App = () => {
   return (
     <div>
-      <Header></Header>
-      <Button>ELO</Button>
+      <LandingPage></LandingPage>
     </div>
   );
 };
