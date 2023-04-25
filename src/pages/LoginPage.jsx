@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import AuthContext from '../components/store/auth-context';
+import Login from '../components/Login/Login';
 
 const LoginPage = () => {
-  const context = useContext(AuthContext);
-
-  return <button onClick={context.onLogin}>Login</button>;
+  return (
+    <React.Fragment>
+      <p>EO</p>
+      <Login></Login>
+    </React.Fragment>
+  )
 };
 
 export default LoginPage;
