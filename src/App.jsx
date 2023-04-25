@@ -1,15 +1,19 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+import React, { useContext } from 'react';
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import AuthContext from './components/store/auth-context';
+
 import './App.css';
-import Header from './components/Header/Header.jsx'
 
 const App = () => {
+  const context = useContext(AuthContext);
   return (
-    <div>
-      <Header></Header>
-      <Button>ELO</Button>
-    </div>
+    <React.Fragment>
+      <main>
+        {!context.isLoggedIn && <LoginPage />}
+        {context.isLoggedIn && <LandingPage />}
+      </main>
+    </React.Fragment>
   );
 };
 
