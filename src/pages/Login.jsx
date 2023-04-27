@@ -49,6 +49,8 @@ const Login = () => {
     isValid: null,
   });
 
+  const notify = () => toast('Login succeed');
+
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
@@ -102,7 +104,7 @@ const Login = () => {
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
+      });
   };
 
   return (

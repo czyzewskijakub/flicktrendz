@@ -11,6 +11,9 @@ import Root from './pages/Root';
 import Register from './pages/Register';
 import About from './pages/About';
 import UserProfile from './pages/UserProfile';
+import ProtectedRoute from './pages/ProtectedRoute';
+import Predict from './pages/Predict';
+import TilesList from './components/Tiles/TilesList';
 
 const router = createBrowserRouter([
   {
@@ -19,9 +22,35 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: 'login', element: <Login /> },
-      { path: 'register', element: <Register />},
-      { path: 'profile', element: <UserProfile />},
-      { path: 'about', element: <About />},
+      { path: 'register', element: <Register /> },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRoute>
+            <UserProfile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'predict',
+        element: (
+          <ProtectedRoute>
+            <Predict />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'statistic',
+        element: (
+          <ProtectedRoute>
+            <TilesList />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

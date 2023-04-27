@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const AuthContext = React.createContext({
@@ -12,6 +13,7 @@ export const AuthContextProvider = (props) => {
   // const authURL = import.meta.env.VITE_REACT_AUTH_URL;
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
@@ -24,6 +26,7 @@ export const AuthContextProvider = (props) => {
   const logoutHandler = () => {
     localStorage.removeItem('isLoggedIn');
     setIsLoggedIn(false);
+    // navigate('/');
   };
 
   const loginHandler = () => {

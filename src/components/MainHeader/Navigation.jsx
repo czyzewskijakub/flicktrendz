@@ -13,7 +13,21 @@ const Navigation = () => {
         {ctx.isLoggedIn && (
           <li>
             <NavLink to="/profile" end>
-              Users
+              Profile
+            </NavLink>
+          </li>
+        )}
+        {ctx.isLoggedIn && (
+          <li>
+            <NavLink to="/predict" end>
+              Model AI
+            </NavLink>
+          </li>
+        )}
+        {ctx.isLoggedIn && (
+          <li>
+            <NavLink to="/statistic" end>
+              Statistics
             </NavLink>
           </li>
         )}
