@@ -1,5 +1,5 @@
 {
-  "name": "vite-template-react",
+  "name": "adoto-frontend",
   "version": "1.3.0",
   "scripts": {
     "start": "vite --port 3000 --open",
@@ -8,15 +8,19 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.2.3",
+    "axios": "^1.3.6",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-google-button": "^0.7.2",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "victory": "^36.6.8"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^3.1.0",
     "vite": "^4.2.1"
-  }
+  },
+  "description": "<h1 align=\"center\">   Vite Template React </h1>",
+  "main": "vite.config.js",
+  "author": "",
+  "license": "ISC"
 }
