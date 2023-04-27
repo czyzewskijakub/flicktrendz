@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import MainHeader from './components/MainHeader/MainHeader';
 import LandingPage from './pages/LandingPage';

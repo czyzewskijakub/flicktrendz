@@ -19,7 +19,7 @@ const LandingPage = () => {
         <Item
           title="Statistic"
           svg={svgImgStatistic}
-          text="The project utilizes machine learning algorithms to analyze trends and patterns in YouTube data, including views, likes, comments, and shares. By providing accurate predictions, Flicktrendz can help young creators make informed decisions about their content and grow their channels more efficiently."
+          text="A statistics panel containing statistics about the top trending YouTube videos provides insights into the performance and popularity of videos on the platform. The panel can display metrics such as the number of views, likes, dislikes, comments, and shares, as well as engagement rates and audience demographics"
         />
         <Item
           title="Predict"
