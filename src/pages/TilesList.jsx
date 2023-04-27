@@ -1,22 +1,16 @@
 import React from 'react';
 
 import classes from './TilesList.module.css';
-import Tile from '../components/Tiles/Tile';
+import Chart from '../components/Charts/Chart';
 
 const TilesList = () => {
   return (
     <React.Fragment>
       <div className={classes['grid-container']}>
-        <Tile />
-        <Tile />
-        <Tile />
-        <Tile />
-        <Tile />
-        <Tile />
-        <Tile />
-        <Tile />
-        <Tile />
-        <Tile />
+        <Chart url='http://localhost:5000/ai/statistics/likes' />
+        <Chart url='http://localhost:5000/ai/statistics/likes' />
+        <Chart url='http://localhost:5000/ai/statistics/likes' />
+        <Chart url='http://localhost:5000/ai/statistics/likes' />
       </div>
     </React.Fragment>
   );

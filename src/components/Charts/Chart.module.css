@@ -1,6 +1,7 @@
 .chart {
   width: 90%;
-  max-width: 40rem;
+  max-width: 60rem;
+  height: auto;
   margin: 2rem auto;
   padding: 2rem;
   overflow: auto
