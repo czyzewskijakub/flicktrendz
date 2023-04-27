@@ -4,3 +4,26 @@
   margin: 2rem auto;
   padding: 2rem;
 }
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.button-container,
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.scale {
+  width: 70%; 
+  height: auto;
+}
+
+.desc {
+  font-size: 18px;
+  margin: 20px 0;
+}
