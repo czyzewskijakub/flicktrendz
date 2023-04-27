@@ -14,7 +14,7 @@
   align-items: center;
 }
 
-p {
+.container p {
   display: inline-block;
   font-size: 20px;
   text-transform: uppercase;
