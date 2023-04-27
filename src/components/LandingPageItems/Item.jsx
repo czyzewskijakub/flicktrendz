@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Card from '../UI/Card';
 import Button from '../UI/Button';
@@ -10,11 +11,13 @@ const Item = (props) => {
     <Card className={classes.display}>
       <h2 className={classes.title}>{props.title}</h2>
       <div className={classes.control}>
-        <img src={props.svg} alt="Your SVG" className={classes.scale}/>
+        <img src={props.svg} alt="Your SVG" className={classes.scale} />
       </div>
-      <p className={classes.desc} >{props.text}</p>
+      <p className={classes.desc}>{props.text}</p>
       <div className={classes['button-container']}>
-        <Button>Check</Button>
+        <Link to={props.to}>
+          <Button>Check</Button>
+        </Link>
       </div>
     </Card>
   );

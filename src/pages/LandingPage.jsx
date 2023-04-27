@@ -15,16 +15,19 @@ const LandingPage = () => {
           title="About project"
           svg={svgImgAbout}
           text="Flicktrendz is a project focused on developing a prediction model for young content creators on YouTube. The model aims to forecast the popularity of a video before it is uploaded, which can help creators optimize their content and increase their reach."
+          to={'/about'}
         />
         <Item
           title="Statistic"
           svg={svgImgStatistic}
           text="A statistics panel containing statistics about the top trending YouTube videos provides insights into the performance and popularity of videos on the platform. The panel can display metrics such as the number of views, likes, dislikes, comments, and shares, as well as engagement rates and audience demographics"
+          to={'/statistic'}
         />
         <Item
           title="Predict"
           svg={svgImgModel}
           text="The project utilizes machine learning algorithms to analyze trends and patterns in YouTube data, including views, likes, comments, and shares. By providing accurate predictions, Flicktrendz can help young creators make informed decisions about their content and grow their channels more efficiently."
+          to={'/predict'}
         />
       </div>
     </React.Fragment>
