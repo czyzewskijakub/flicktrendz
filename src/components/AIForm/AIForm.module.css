@@ -8,3 +8,49 @@
 .actions {
   text-align: center;
 }
+
+.control {
+  margin: 1rem 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.control label,
+.control input {
+  display: block;
+}
+
+.control label {
+  font-weight: bold;
+  flex: 1;
+  color: #464646;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  flex: 3;
+  font: inherit;
+  padding: 0.35rem 0.35rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+@media (min-width: 768px) {
+  .control {
+    align-items: center;
+    flex-direction: row;
+  }
+
+}
+
+.display {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.display p {
+  display: inline-block;
+  font-size: 30px;
+}

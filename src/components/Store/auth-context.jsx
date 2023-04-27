@@ -35,6 +35,7 @@ export const AuthContextProvider = (props) => {
       .then(function (response) {
         localStorage.setItem('isLoggedIn', response.data.token);
         setIsLoggedIn(true);
+        // userDataHandler(response.data.user)
       })
       .catch(function (error) {
         alert("Something went wrong!");

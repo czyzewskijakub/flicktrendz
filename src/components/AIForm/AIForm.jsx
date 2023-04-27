@@ -7,18 +7,146 @@ import Button from '../UI/Button';
 
 import axios from 'axios';
 
+const options = [
+  {
+    categoryID: 1,
+    Title: 'Film & Animation',
+  },
+  {
+    categoryID: 2,
+    Title: 'Autos & Vehicles',
+  },
+  {
+    categoryID: 10,
+    Title: 'Music',
+  },
+  {
+    categoryID: 15,
+    Title: 'Pets & Animals',
+  },
+  {
+    categoryID: 17,
+    Title: 'Sports',
+  },
+  {
+    categoryID: 18,
+    Title: 'Short Movies',
+  },
+  {
+    categoryID: 19,
+    Title: 'Travel & Events',
+  },
+  {
+    categoryID: 20,
+    Title: 'Gaming',
+  },
+  {
+    categoryID: 21,
+    Title: 'Videoblogging',
+  },
+  {
+    categoryID: 22,
+    Title: 'People & Blogs',
+  },
+  {
+    categoryID: 23,
+    Title: 'Comedy',
+  },
+  {
+    categoryID: 24,
+    Title: 'Entertainment',
+  },
+  {
+    categoryID: 25,
+    Title: 'News & Politics',
+  },
+  {
+    categoryID: 26,
+    Title: 'Howto & Style',
+  },
+  {
+    categoryID: 27,
+    Title: 'Education',
+  },
+  {
+    categoryID: 28,
+    Title: 'Science & Technology',
+  },
+  {
+    categoryID: 30,
+    Title: 'Movies',
+  },
+  {
+    categoryID: 31,
+    Title: 'Anime/Animation',
+  },
+  {
+    categoryID: 32,
+    Title: 'Action/Adventure',
+  },
+  {
+    categoryID: 33,
+    Title: 'Classics',
+  },
+  {
+    categoryID: 34,
+    Title: 'Comedy',
+  },
+  {
+    categoryID: 35,
+    Title: 'Documentary',
+  },
+  {
+    categoryID: 36,
+    Title: 'Drama',
+  },
+  {
+    categoryID: 37,
+    Title: 'Family',
+  },
+  {
+    categoryID: 38,
+    Title: 'Foreign',
+  },
+  {
+    categoryID: 39,
+    Title: 'Horror',
+  },
+  {
+    categoryID: 40,
+    Title: 'Sci-Fi/Fantasy',
+  },
+  {
+    categoryID: 41,
+    Title: 'Thriller',
+  },
+  {
+    categoryID: 42,
+    Title: 'Shorts',
+  },
+  {
+    categoryID: 43,
+    Title: 'Shows',
+  },
+  {
+    categoryID: 44,
+    Title: 'Trailers',
+  },
+];
+
 const AIForm = () => {
   const [channelViewCount, setChannelViewCount] = useState('');
   const [channelElapsedTime, setChannelElapsedTime] = useState('');
   const [channelVideoCount, setChannelVideoCount] = useState('');
   const [channelSubscriberCount, setChannelSubscriberCount] = useState('');
   const [channelCommentCount, setChannelCommentCount] = useState('');
-  // const [videoCategoryId, setVideoCategoryId] = useState('');
+  const [videoCategoryId, setVideoCategoryId] = useState('');
   const [likes, setLikes] = useState('');
   const [dislikes, setDislikes] = useState('');
   const [comments, setComments] = useState('');
   const [elapsedTime, setElapsedTime] = useState('');
-  // const [videoPublished, setVideoPublished] = useState('');
+  const [videoPublished, setVideoPublished] = useState('');
+  const [views, setViews] = useState('');
 
   const channelViewCountHandler = (event) => {
     setChannelViewCount(event.target.value);
@@ -40,9 +168,9 @@ const AIForm = () => {
     setChannelCommentCount(event.target.value);
   };
 
-  // const videoCategoryIdHandler = (event) => {
-  //   setVideoCategoryId(event.target.value);
-  // };
+  const videoCategoryIdHandler = (event) => {
+    setVideoCategoryId(event.target.value);
+  };
 
   const likesHandler = (event) => {
     setLikes(event.target.value);
@@ -60,30 +188,28 @@ const AIForm = () => {
     setElapsedTime(event.target.value);
   };
 
-  // const videoPublishedHandler = (event) => {
-  //   setVideoPublished(event.target.value);
-  // };
-
-  // const createRequestData = (data) = {};
+  const videoPublishedHandler = (event) => {
+    setVideoPublished(event.target.value);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
     axios
       .post('http://localhost:5000/ai/predict', {
-        channel_view_count: 1,
-        channel_elapsed_time: 1,
-        channel_video_count: 2,
-        channel_subscriber_count: 3,
-        channel_comment_count: 5,
-        // video_categoryId: 4,
-        likes: 6,
-        dislikes: 7,
-        comments: 8,
-        elapsed_time: 9,
-        // video_published: 11,
+        channel_view_count: channelViewCount,
+        channel_elapsed_time: channelElapsedTime,
+        channel_video_count: channelVideoCount,
+        channel_subscriber_count: channelSubscriberCount,
+        channel_comment_count: channelCommentCount,
+        likes: likes,
+        video_categoryId: videoCategoryId,
+        dislikes: dislikes,
+        comments: comments,
+        elapsed_time: 75480,
+        video_published: videoPublished,
       })
       .then(function (response) {
-        // console.log(response);
+        setViews(response.data.views);
       })
       .catch(function (error) {
         // console.log(error);
@@ -129,13 +255,16 @@ const AIForm = () => {
             onChange={channelCommentCountHandler}
             value={channelCommentCount}
           />
-          {/* <Input
-            id="videoCategoryId"
-            label="Video Category Id"
-            type="number"
-            onChange={videoCategoryIdHandler}
-            value={videoCategoryId}
-          /> */}
+          <div className={classes.control}>
+            <label>Video Category Id</label>
+            <select value={videoCategoryId} onChange={videoCategoryIdHandler}>
+              {options.map((opt) => (
+                <option value={opt.categoryID} key={opt.categoryID}>
+                  {opt.Title}
+                </option>
+              ))}
+            </select>
+          </div>
           <Input
             id="likes"
             label="Likes"
@@ -164,19 +293,23 @@ const AIForm = () => {
             onChange={elapsedTimeHandler}
             value={elapsedTime}
           />
-          {/* <Input
+          <Input
             id="videoPublished"
             label="Video Published"
-            type="number"
+            type="date"
             onChange={videoPublishedHandler}
             value={videoPublished}
-          /> */}
+          />
           <div className={classes.actions}>
             <Button type="submit" className={classes.btn}>
               Check
             </Button>
           </div>
         </form>
+        <div className={classes.display}>
+          <h2>Predicted Views</h2>
+          <p>{views}</p>
+        </div>
       </Card>
     </React.Fragment>
   );
