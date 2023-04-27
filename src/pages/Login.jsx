@@ -49,8 +49,6 @@ const Login = () => {
     isValid: null,
   });
 
-  const notify = () => toast('Login succeed');
-
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
@@ -84,11 +82,15 @@ const Login = () => {
     event.preventDefault();
     if (formIsValid) {
       authCtx.onLogin(emailState.value, passwordState.value);
-      navigate('/');
     } else if (!emailIsValid) {
       emailInputRef.current.focus();
     } else {
       passwordInputRef.current.focus();
+    }
+    if (authCtx.isLoggedIn) {
+      navigate('/login');
+    } else {
+      navigate('/');
     }
     emailState.value = '';
     passwordState.value = '';
