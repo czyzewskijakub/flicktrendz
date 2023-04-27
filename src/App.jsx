@@ -13,7 +13,7 @@ import About from './pages/About';
 import UserProfile from './pages/UserProfile';
 import ProtectedRoute from './pages/ProtectedRoute';
 import Predict from './pages/Predict';
-import TilesList from './components/Tiles/TilesList';
+import TilesList from './pages/TilesList';
 
 const router = createBrowserRouter([
   {

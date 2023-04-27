@@ -37,7 +37,7 @@ export const AuthContextProvider = (props) => {
         setIsLoggedIn(true);
       })
       .catch(function (error) {
-        // console.log(error);
+        alert("Something went wrong!");
       });
   };
 

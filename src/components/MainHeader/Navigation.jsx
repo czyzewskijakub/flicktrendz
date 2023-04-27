@@ -38,9 +38,6 @@ const Navigation = () => {
             </NavLink>
           </li>
         )}
-        <li>
-          <NavLink to="/about">About</NavLink>
-        </li>
         {ctx.isLoggedIn && (
           <li>
             <button onClick={logoutHandler}>Logout</button>
