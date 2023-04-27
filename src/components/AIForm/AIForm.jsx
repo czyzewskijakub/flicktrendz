@@ -83,10 +83,10 @@ const AIForm = () => {
         // video_published: 11,
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
   };
 

@@ -99,11 +99,11 @@ const Login = () => {
       .get('http://localhost:5000/users/login/google')
       .then(function (response) {
         // handle success
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         // handle error
-        console.log(error);
+        // console.log(error);
       });
   };
 

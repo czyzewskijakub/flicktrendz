@@ -51,10 +51,10 @@ export const AuthContextProvider = (props) => {
       })
       .then(function (response) {
         alert('Success!');
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
-        console.log(JSON.stringify(error));
+        // console.log(JSON.stringify(error));
       });
   };
 
