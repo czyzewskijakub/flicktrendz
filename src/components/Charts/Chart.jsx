@@ -50,9 +50,14 @@ const Chart = (props) => {
     //   (value, index) => index
     // );
     chart = (
-      <VictoryChart domainPadding={5} padding={{ left: 80, bottom: 80 }}>
+      <VictoryChart
+          domainPadding={{x: 20, y:10}}
+          // domainPadding={{left: 20, right: 20}}
+          padding={{ left: 80, bottom: 105 }}
+      >
         <VictoryAxis
-          style={{
+            label="Category name"
+            style={{
             ticks: { stroke: 'grey', size: 5 },
             tickLabels: {
               fontSize: 10,
@@ -60,10 +65,25 @@ const Chart = (props) => {
               angle: -30,
               textAnchor: 'end',
             },
+            axisLabel: {padding: 75},
           }}
+          padding={{ top: 20, bottom: 60 }}
         />
-        <VictoryAxis dependentAxis tickFormat={(y) => y} />
-        <VictoryBar data={fetchData} x="Category" y={props.y} />
+        <VictoryAxis
+            dependentAxis
+            tickFormat={(y) => y}
+        />
+        <VictoryBar
+            style={{
+                data: {
+                    fill: ({ index }) => +index % 2 === 0  ? "#4a14a2" : "#1631a9",
+                    stroke: "#000000",
+                    fillOpacity: 0.7,
+                    strokeWidth: 2
+                }
+            }}
+            data={fetchData} x="Category" y={props.y}
+        />
       </VictoryChart>
     );
   }
