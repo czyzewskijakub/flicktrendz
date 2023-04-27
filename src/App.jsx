@@ -1,24 +1,62 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// import MainHeader from './components/MainHeader/MainHeader';
 import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from "./pages/RegisterPage";
-import AuthContext from './components/store/auth-context';
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import './App.css';
+// import AuthContext from './components/Store/auth-context';
+import Login from './pages/Login';
+
+// import classes from './App.module.css';
+import Root from './pages/Root';
+import Register from './pages/Register';
+import About from './pages/About';
+import UserProfile from './pages/UserProfile';
+import ProtectedRoute from './pages/ProtectedRoute';
+import Predict from './pages/Predict';
+import TilesList from './components/Tiles/TilesList';
+
+const router = createBrowserRouter([
+  {
+    path: '',
+    element: <Root />,
+    children: [
+      { index: true, element: <LandingPage /> },
+      { path: 'login', element: <Login /> },
+      { path: 'register', element: <Register /> },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRoute>
+            <UserProfile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'predict',
+        element: (
+          <ProtectedRoute>
+            <Predict />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'statistic',
+        element: (
+          <ProtectedRoute>
+            <TilesList />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 const App = () => {
-  // const context = useContext(AuthContext);
-  return (
-      <BrowserRouter>
-          <Routes>
-              <Route path="/" element={<Outlet />}>
-                  <Route index element={<LoginPage />} />
-                  <Route path="register" element={<RegisterPage />} />
-                  <Route path="landing" element={<LandingPage />} />
-              </Route>
-          </Routes>
-      </BrowserRouter>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 };
 
 export default App;

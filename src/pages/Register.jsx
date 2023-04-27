@@ -1,17 +1,17 @@
 import React, {
   useContext,
-  useEffect,
   useReducer,
   useState,
   useRef,
+  useEffect,
 } from 'react';
 
-import Button from '../UI/Button/Button';
-import Input from '../UI/Input/Input';
-import Card from '../UI/Card/Card';
-import AuthContext from '../store/auth-context';
+import Button from '../components/UI/Button';
+import Input from '../components/UI/Input';
+import Card from '../components/UI/Card';
+import AuthContext from '../components/Store/auth-context';
 import classes from './Register.module.css';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
@@ -35,7 +35,10 @@ const passwordReducer = (state, action) => {
 
 const repeatPasswordReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
-    return { value: action.val.repeat, isValid: action.val.repeat === action.val.passw };
+    return {
+      value: action.val.repeat,
+      isValid: action.val.repeat === action.val.passw,
+    };
   }
   if (action.type === 'INPUT_BLUR') {
     return { value: state.value, isValid: state.value === action.val.passw };
@@ -45,6 +48,8 @@ const repeatPasswordReducer = (state, action) => {
 
 const Register = () => {
   const [formIsValid, setFormIsValid] = useState(false);
+  const [username, setUserName] = useState('');
+  const [profileURL, setProfileURL] = useState('');
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: '',
@@ -56,27 +61,17 @@ const Register = () => {
     isValid: null,
   });
 
-  const [repeatPasswordState, dispatchRepeatPassword] = useReducer(repeatPasswordReducer, {
-    value: '',
-    isValid: null,
-  })
+  const [repeatPasswordState, dispatchRepeatPassword] = useReducer(
+    repeatPasswordReducer,
+    {
+      value: '',
+      isValid: null,
+    }
+  );
 
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
   const { isValid: repeatPasswordIsValid } = repeatPasswordState;
-
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      console.log('typing...');
-      setFormIsValid(emailState.isValid && passwordState.isValid && repeatPasswordState.isValid);
-    }, 500);
-
-    return () => {
-      //clean-up
-      console.log('clean');
-      clearTimeout(identifier);
-    };
-  }, [emailIsValid, passwordIsValid, repeatPasswordIsValid]);
 
   const context = useContext(AuthContext);
 
@@ -89,12 +84,15 @@ const Register = () => {
   };
 
   const passwordChangeHandler = (event) => {
-    dispatchPassword({ type: 'USER_INPUT', val: event.target.value});
+    dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
   };
 
   const repeatPasswordChangeHandler = (event) => {
-    dispatchRepeatPassword({ type: 'USER_INPUT', val: {repeat: event.target.value, passw: passwordState.value}})
-  }
+    dispatchRepeatPassword({
+      type: 'USER_INPUT',
+      val: { repeat: event.target.value, passw: passwordState.value },
+    });
+  };
 
   const validateEmailHandler = () => {
     dispatchEmail({ type: 'INPUT_BLUR' });
@@ -105,29 +103,57 @@ const Register = () => {
   };
 
   const validateRepeatPasswordHandler = () => {
-    dispatchRepeatPassword({ type: 'INPUT_BLUR', val: {passw: passwordState.value}})
+    dispatchRepeatPassword({
+      type: 'INPUT_BLUR',
+      val: { passw: passwordState.value },
+    });
+  };
+
+  const usernameHandler = (event) => {
+    setUserName(event.target.value)
   }
+
+  const profileURLHandler = (event) => {
+    setProfileURL(event.target.value)
+  }
+
+  useEffect(() => {
+    setFormIsValid(
+      emailState.isValid && passwordState.isValid && repeatPasswordState.value
+    );
+  }, [emailState.isValid, passwordState.isValid, repeatPasswordState.value]);
 
   const navigate = useNavigate();
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      navigate('/');
-      context.onRegistered(emailState.value, passwordState.value);
+      context.onRegister(
+        emailState.value,
+        passwordState.value,
+        username,
+        profileURL
+      );
+      navigate('/login');
     } else if (!emailIsValid) {
       emailInputRef.current.focus();
-    } else if (!passwordIsValid){
+    } else if (!passwordIsValid) {
       passwordInputRef.current.focus();
     } else {
       repeatPasswordInputRef.current.focus();
     }
   };
 
-
   return (
     <Card className={classes.register}>
       <form onSubmit={submitHandler}>
+        <Input
+          id="username"
+          label="Username"
+          type="text"
+          onChange={usernameHandler}
+          value={username}
+        />
         <Input
           ref={emailInputRef}
           id="email"
@@ -149,14 +175,21 @@ const Register = () => {
           onBlur={validatePasswordHandler}
         />
         <Input
-            ref={repeatPasswordInputRef}
-            id="repeatPassword"
-            label="Repeat password"
-            type="password"
-            isValid={repeatPasswordIsValid}
-            value={repeatPasswordState.value}
-            onChange={repeatPasswordChangeHandler}
-            onBlur={validateRepeatPasswordHandler}
+          ref={repeatPasswordInputRef}
+          id="repeatPassword"
+          label="Repeat password"
+          type="password"
+          isValid={repeatPasswordIsValid}
+          value={repeatPasswordState.value}
+          onChange={repeatPasswordChangeHandler}
+          onBlur={validateRepeatPasswordHandler}
+        />
+        <Input
+          id="profileURL"
+          label="Profile URL"
+          type="url"
+          onChange={profileURLHandler}
+          value={profileURL}
         />
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn}>
