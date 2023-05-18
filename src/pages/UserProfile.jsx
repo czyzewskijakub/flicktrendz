@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import Card from '../components/UI/Card';
+import HistoryProfile from '../components/Profile/HistoryProfile';
 
 import classes from './UserProfile.module.css';
 
@@ -61,7 +62,12 @@ const UserProfile = () => {
     content = <Spinner animation="border" />;
   }
 
-  return <Card className={classes.profile}>{content}</Card>;
+  return (
+    <React.Fragment>
+      <Card className={classes.profile}>{content}</Card>
+      {(!isLoading && fetchData.email) && <HistoryProfile userId={fetchData.id}/>}
+    </React.Fragment>
+  );
 };
 
 export default UserProfile;

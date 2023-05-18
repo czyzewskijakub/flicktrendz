@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import classes from './AIForm.module.css';
 import Card from '../UI/Card';
@@ -140,13 +140,46 @@ const AIForm = () => {
   const [channelVideoCount, setChannelVideoCount] = useState('');
   const [channelSubscriberCount, setChannelSubscriberCount] = useState('');
   const [channelCommentCount, setChannelCommentCount] = useState('');
-  const [videoCategoryId, setVideoCategoryId] = useState('');
+  const [videoCategoryId, setVideoCategoryId] = useState(options[0].categoryID);
   const [likes, setLikes] = useState('');
   const [dislikes, setDislikes] = useState('');
   const [comments, setComments] = useState('');
   const [elapsedTime, setElapsedTime] = useState('');
   const [videoPublished, setVideoPublished] = useState('');
   const [views, setViews] = useState('');
+  const [fetchData, setFetchData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchDataHandler = useCallback(async () => {
+    setIsLoading(true);
+    const token = localStorage.getItem('isLoggedIn');
+    const token_text = `Bearer ${token}`;
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: token_text,
+      },
+    };
+    try {
+      const response = await fetch(
+        'http://localhost:5000/users/profile',
+        options
+      );
+      if (!response.ok) {
+        throw new Error('Some went wrong!');
+      }
+
+      const data = await response.json();
+      setFetchData(data.user);
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchDataHandler();
+  }, [fetchDataHandler]);
 
   const channelViewCountHandler = (event) => {
     setChannelViewCount(event.target.value);
@@ -196,16 +229,16 @@ const AIForm = () => {
     event.preventDefault();
     axios
       .post('http://localhost:5000/ai/predict', {
-        channel_view_count: channelViewCount,
-        channel_elapsed_time: channelElapsedTime,
-        channel_video_count: channelVideoCount,
-        channel_subscriber_count: channelSubscriberCount,
-        channel_comment_count: channelCommentCount,
-        likes: likes,
-        video_categoryId: videoCategoryId,
-        dislikes: dislikes,
-        comments: comments,
-        elapsed_time: 75480,
+        channel_view_count: +channelViewCount,
+        channel_elapsed_time: +channelElapsedTime,
+        channel_video_count: +channelVideoCount,
+        channel_subscriber_count: +channelSubscriberCount,
+        channel_comment_count: +channelCommentCount,
+        likes: +likes,
+        video_categoryId: +videoCategoryId,
+        dislikes: +dislikes,
+        comments: +comments,
+        elapsed_time: +elapsedTime,
         video_published: videoPublished,
       })
       .then(function (response) {
@@ -213,6 +246,27 @@ const AIForm = () => {
       })
       .catch(function (error) {
         // console.log(error);
+      });
+      console.log(fetchData)
+      axios.post('http://localhost:5000/users/history/save', {
+        channel_view_count: +channelViewCount,
+        channel_elapsed_time: +channelElapsedTime,
+        channel_video_count: +channelVideoCount,
+        channel_subscriber_count: +channelSubscriberCount,
+        channel_comment_count: +channelCommentCount,
+        likes: +likes,
+        video_category_id: +videoCategoryId,
+        dislikes: +dislikes,
+        comments: +comments,
+        elapsed_time: +elapsedTime,
+        video_published: videoPublished,
+        user_id: +fetchData.id
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 

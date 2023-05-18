@@ -1,0 +1,17 @@
+.history {
+  width: 90%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.display {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
