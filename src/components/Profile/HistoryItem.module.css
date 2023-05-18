@@ -1,0 +1,22 @@
+.border {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #471daa31;
+}
+
+.lab {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.lab label {
+  width: 400px;
+  padding-left: 20px;
+  text-transform: uppercase;
+}
+
+.lab p {
+  width: 200px;
+}
