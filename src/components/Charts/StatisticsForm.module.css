@@ -1,0 +1,27 @@
+.stat {
+  width: 90%;
+  max-width: 60rem;
+  height: auto;
+  margin: 2rem auto;
+  padding: 2rem;
+  overflow: auto
+}
+
+.control {
+  margin: 1rem 0;
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+}
+
+.control label,
+.control input {
+  display: block;
+}
+
+.control label {
+  font-weight: bold;
+  flex: 1;
+  color: #464646;
+  margin-bottom: 0.5rem;
+}
