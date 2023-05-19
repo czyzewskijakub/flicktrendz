@@ -149,7 +149,7 @@ const StatisticsForm = (props) => {
     <Card className={classes.stat}>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label>Video Category Id</label>
+          <label>Video Category Name</label>
           <select value={videoCategoryId} onChange={videoCategoryIdHandler}>
             {options.map((opt) => (
               <option value={opt.categoryID} key={opt.categoryID}>

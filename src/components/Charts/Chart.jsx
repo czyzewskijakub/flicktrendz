@@ -72,7 +72,7 @@ import classes from './Chart.module.css';
 // ];
 const Chart = (props) => {
   const [chartData, setChartDate] = useState(props.data);
-  let chData = []
+  let chData = [];
   if (chartData) {
     // console.log(dataa);
     chData = Object.entries(chartData).map(([key, value]) => ({
@@ -80,6 +80,7 @@ const Chart = (props) => {
       value: value,
     }));
   }
+
   let chart = (
     <BarChart
       width={500}
@@ -103,9 +104,10 @@ const Chart = (props) => {
 
   return (
     <Card className={classes.chart}>
-      {chData && (
-        <div className={classes.container}>{props.data && chart}</div>
-      )}
+      <div className={classes.center}>
+        <p>{props.name}</p>
+      </div>
+      {chData && <div className={classes.container}>{props.data && chart}</div>}
     </Card>
   );
 };
