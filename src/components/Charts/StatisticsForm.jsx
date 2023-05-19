@@ -141,6 +141,8 @@ const StatisticsForm = (props) => {
 
   const videoCategoryIdHandler = (event) => {
     setVideoCategoryId(event.target.value);
+    props.onUserPick(videoCategoryId);
+    console.log(videoCategoryId);
   };
 
   return (
@@ -156,11 +158,11 @@ const StatisticsForm = (props) => {
             ))}
           </select>
         </div>
-        <div className={classes.actions}>
+        {/* <div className={classes.actions}>
           <Button type="submit" className={classes.btn}>
             Filter
           </Button>
-        </div>
+        </div> */}
       </form>
     </Card>
   );

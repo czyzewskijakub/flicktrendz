@@ -1,104 +1,111 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
-
-import Spinner from 'react-bootstrap/Spinner';
+import React, { useState } from 'react';
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
 
 import Card from '../UI/Card';
 
 import classes from './Chart.module.css';
 
+// const data = [
+//   { name: '25%', value: 2385 },
+//   { name: '50%', value: 7911 },
+//   { name: '75%', value: 28934 },
+//   { name: 'count', value: 26072 },
+//   { name: 'max', value: 9515175 },
+//   { name: 'mean', value: 65275 },
+//   { name: 'min', value: 1 },
+//   { name: 'std', value: 327673 },
+// ];
+
+// const data = [
+//   {
+//     name: 'Page A',
+//     uv: 4000,
+//     pv: 2400,
+//     amt: 2400,
+//   },
+//   {
+//     name: 'Page B',
+//     uv: 3000,
+//     pv: 1398,
+//     amt: 2210,
+//   },
+//   {
+//     name: 'Page C',
+//     uv: 2000,
+//     pv: 9800,
+//     amt: 2290,
+//   },
+//   {
+//     name: 'Page D',
+//     uv: 2780,
+//     pv: 3908,
+//     amt: 2000,
+//   },
+//   {
+//     name: 'Page E',
+//     uv: 1890,
+//     pv: 4800,
+//     amt: 2181,
+//   },
+//   {
+//     name: 'Page F',
+//     uv: 2390,
+//     pv: 3800,
+//     amt: 2500,
+//   },
+//   {
+//     name: 'Page G',
+//     uv: 3490,
+//     pv: 4300,
+//     amt: 2100,
+//   },
+// ];
 const Chart = (props) => {
-  const [fetchData, setFetchData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchDataHandler = useCallback(async () => {
-    // setIsLoading(true);
-    // try {
-    //   const response = await fetch(props.url);
-    //   if (!response.ok) {
-    //     throw new Error('Some went wrong!');
-    //   }
-
-    //   const data = await response.json();
-    //   setFetchData(data);
-    // } catch (error) {
-    //   console.log(JSON.stringify(error));
-    // }
-    // axios
-    //   .get(props.url)
-    //   .then(function (response) {
-    //     console.log(response);
-    //     setFetchData(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // setIsLoading(false);
-  }, []);
-
-//   useEffect(() => {
-//     fetchDataHandler();
-//   }, [fetchDataHandler]);
-
-  let chart = <p>No data provided.</p>;
-
-  if (fetchData.length > 0) {
-    // const category = fetchData.map((obj) => obj.Category);
-    // const values = fetchData.map((obj) => obj['Average Likes']);
-    // const ticks = Array.from(
-    //   { length: fetchData.length },
-    //   (value, index) => index
-    // );
-    chart = (
-    //   <VictoryChart
-    //       domainPadding={{x: 20, y:10}}
-    //       // domainPadding={{left: 20, right: 20}}
-    //       padding={{ left: 80, bottom: 105 }}
-    //   >
-    //     <VictoryAxis
-    //         label="Category name"
-    //         style={{
-    //         ticks: { stroke: 'grey', size: 5 },
-    //         tickLabels: {
-    //           fontSize: 10,
-    //           padding: 6,
-    //           angle: -30,
-    //           textAnchor: 'end',
-    //         },
-    //         axisLabel: {padding: 75},
-    //       }}
-    //       padding={{ top: 20, bottom: 60 }}
-    //     />
-    //     <VictoryAxis
-    //         dependentAxis
-    //         tickFormat={(y) => y}
-    //     />
-    //     <VictoryBar
-    //         style={{
-    //             data: {
-    //                 fill: ({ index }) => +index % 2 === 0  ? "#4a14a2" : "#1631a9",
-    //                 stroke: "#000000",
-    //                 fillOpacity: 0.7,
-    //                 strokeWidth: 2
-    //             }
-    //         }}
-    //         data={fetchData} x="Category" y={props.y}
-    //     />
-    //   </VictoryChart>
-    <p>XDS</p>
-    );
+  const [chartData, setChartDate] = useState(props.data);
+  let chData = []
+  if (chartData) {
+    // console.log(dataa);
+    chData = Object.entries(chartData).map(([key, value]) => ({
+      name: key,
+      value: value,
+    }));
   }
-
-  if (isLoading) {
-    chart = <Spinner animation="border" />;
-  }
+  let chart = (
+    <BarChart
+      width={500}
+      height={300}
+      data={chData}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis dataKey="value" />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="value" fill="#8884d8" />
+    </BarChart>
+  );
 
   return (
     <Card className={classes.chart}>
-      <div className={classes.container}>
-        {!isLoading && <p>{props.title}</p>}
-        {chart}
-      </div>
+      {chData && (
+        <div className={classes.container}>{props.data && chart}</div>
+      )}
     </Card>
   );
 };
