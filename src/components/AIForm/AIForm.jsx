@@ -247,12 +247,6 @@ const AIForm = () => {
         user_id: +fetchData.id,
         predicted_views: +views
       })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   const submitHandler = (event) => {
@@ -274,9 +268,6 @@ const AIForm = () => {
       .then(function (response) {
         setViews(response.data.views);
       })
-      .catch(function (error) {
-        console.log(error);
-      });
   };
 
   return (

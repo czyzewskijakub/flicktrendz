@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Card from '../UI/Card';
 
 import classes from './StatisticsForm.module.css';
-import Button from '../UI/Button';
 
 const options = [
   {
@@ -158,11 +157,6 @@ const StatisticsForm = (props) => {
             ))}
           </select>
         </div>
-        {/* <div className={classes.actions}>
-          <Button type="submit" className={classes.btn}>
-            Filter
-          </Button>
-        </div> */}
       </form>
     </Card>
   );
