@@ -1,0 +1,27 @@
+const data = [
+  "VideoCommentCount",
+  "channelCommentCount",
+  "channelViewCount",
+  "channelelapsedtime",
+  "comments/subscriber",
+  "comments/views",
+  "dislikes/subscriber",
+  "dislikes/views",
+  "elapsedtime",
+  "likes/dislikes",
+  "likes/subscriber",
+  "likes/views",
+  "subscriberCount",
+  "totalviews/channelelapsedtime",
+  "totvideos/videocount",
+  "totviews/totsubs",
+  "videoCategoryId",
+  "videoCount",
+  "videoDislikeCount",
+  "videoLikeCount",
+  "videoViewCount",
+  "views/elapsedtime",
+  "views/subscribers",
+]
+
+export default data;

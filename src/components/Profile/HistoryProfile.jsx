@@ -59,6 +59,7 @@ const HistoryProfile = (props) => {
         videoCategoryId = {history.video_category_id}
         videoCount = {history.video_count}
         videoPublished = {history.video_published}
+        predicted_views = {history.predicted_views}
       />
     ));
   }

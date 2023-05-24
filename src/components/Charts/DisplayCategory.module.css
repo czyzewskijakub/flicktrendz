@@ -3,3 +3,7 @@
   margin: auto 10%;
   grid-template-columns: repeat(2, 1fr);
 }
+
+.center {
+  text-align: center;
+}
