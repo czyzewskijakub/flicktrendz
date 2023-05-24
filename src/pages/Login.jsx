@@ -99,14 +99,6 @@ const Login = () => {
   const googleLoginHandle = () => {
     axios
       .get('http://localhost:5000/users/login/google')
-      .then(function (response) {
-        // handle success
-        // console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        // console.log(error);
-      });
   };
 
   return (
