@@ -179,6 +179,10 @@ const HistoryItem = (props) => {
           <label>videoPublished</label>
           <p>{props.videoPublished}</p>
         </div>
+        <div className={classes.lab}>
+          <label>Predict Result</label>
+          <p>{props.predicted_views}</p>
+        </div>
       </div>
     </React.Fragment>
   );

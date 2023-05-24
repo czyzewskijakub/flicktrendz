@@ -225,6 +225,36 @@ const AIForm = () => {
     setVideoPublished(event.target.value);
   };
 
+  useEffect(() => {
+    if (views > 0 ) {
+      handleSaveHistory()
+    }
+  }, [views])
+
+  const handleSaveHistory = () => {
+    axios.post('http://localhost:5000/users/history/save', {
+        channel_view_count: +channelViewCount,
+        channel_elapsed_time: +channelElapsedTime,
+        channel_video_count: +channelVideoCount,
+        channel_subscriber_count: +channelSubscriberCount,
+        channel_comment_count: +channelCommentCount,
+        likes: +likes,
+        video_category_id: +videoCategoryId,
+        dislikes: +dislikes,
+        comments: +comments,
+        elapsed_time: +elapsedTime,
+        video_published: videoPublished,
+        user_id: +fetchData.id,
+        predicted_views: +views
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   const submitHandler = (event) => {
     event.preventDefault();
     axios
@@ -243,27 +273,6 @@ const AIForm = () => {
       })
       .then(function (response) {
         setViews(response.data.views);
-      })
-      .catch(function (error) {
-        // console.log(error);
-      });
-      console.log(fetchData)
-      axios.post('http://localhost:5000/users/history/save', {
-        channel_view_count: +channelViewCount,
-        channel_elapsed_time: +channelElapsedTime,
-        channel_video_count: +channelVideoCount,
-        channel_subscriber_count: +channelSubscriberCount,
-        channel_comment_count: +channelCommentCount,
-        likes: +likes,
-        video_category_id: +videoCategoryId,
-        dislikes: +dislikes,
-        comments: +comments,
-        elapsed_time: +elapsedTime,
-        video_published: videoPublished,
-        user_id: +fetchData.id
-      })
-      .then(function (response) {
-        console.log(response)
       })
       .catch(function (error) {
         console.log(error);
