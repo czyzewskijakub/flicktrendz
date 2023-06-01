@@ -280,6 +280,7 @@ const AIForm = () => {
             type="number"
             onChange={channelViewCountHandler}
             value={channelViewCount}
+            desc="All views from your videos"
           />
           <Input
             id="channelElapsedTime"
@@ -287,6 +288,7 @@ const AIForm = () => {
             type="number"
             onChange={channelElapsedTimeHandler}
             value={channelElapsedTime}
+            desc="Sum of elapsed time for all videos on the channel"
           />
           <Input
             id="channelVideoCount"
@@ -294,6 +296,7 @@ const AIForm = () => {
             type="number"
             onChange={channelVideoCountHandler}
             value={channelVideoCount}
+            desc="How many videos is in your channel"
           />
           <Input
             id="channelSubscriberCount"
@@ -301,6 +304,7 @@ const AIForm = () => {
             type="number"
             onChange={channelSubscriberCountHandler}
             value={channelSubscriberCount}
+            desc="Number of subscribers of your channel"
           />
           <Input
             id="channelCommentCount"
@@ -308,9 +312,10 @@ const AIForm = () => {
             type="number"
             onChange={channelCommentCountHandler}
             value={channelCommentCount}
+            desc="Number of all comments of channel"
           />
           <div className={classes.control}>
-            <label>Video Category Id</label>
+            <label title='Category of you video'>Video Category Name</label>
             <select value={videoCategoryId} onChange={videoCategoryIdHandler}>
               {options.map((opt) => (
                 <option value={opt.categoryID} key={opt.categoryID}>
@@ -325,6 +330,7 @@ const AIForm = () => {
             type="number"
             onChange={likesHandler}
             value={likes}
+            desc="Number of likes"
           />
           <Input
             id="dislikes"
@@ -332,6 +338,7 @@ const AIForm = () => {
             type="number"
             onChange={dislikesHandler}
             value={dislikes}
+            desc="Number of dislikes"
           />
           <Input
             id="comments"
@@ -339,6 +346,7 @@ const AIForm = () => {
             type="number"
             onChange={commentsHandler}
             value={comments}
+            desc="Number of comments"
           />
           <Input
             id="elapsedTime"
@@ -346,6 +354,7 @@ const AIForm = () => {
             type="number"
             onChange={elapsedTimeHandler}
             value={elapsedTime}
+            desc="Sum of elapsed time for all views on the video"
           />
           <Input
             id="videoPublished"
@@ -353,6 +362,7 @@ const AIForm = () => {
             type="date"
             onChange={videoPublishedHandler}
             value={videoPublished}
+            desc="Date of publishing"
           />
           <div className={classes.actions}>
             <Button type="submit" className={classes.btn}>
